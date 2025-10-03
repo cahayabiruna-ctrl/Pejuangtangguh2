@@ -6,61 +6,60 @@
   <title>Motivasi Ksatria</title>
   <style>
     * {margin:0;padding:0;box-sizing:border-box;}
-    body, html {
+    html, body {
       height:100%;
       width:100%;
       font-family: Arial, sans-serif;
-      overflow: hidden; /* biar ga bisa scroll */
+      overflow:hidden;
     }
     body {
-      background: url("./knight.png") no-repeat center center fixed;
+      background: url("./knight.png") no-repeat center center;
       background-size: cover;
       color: white;
     }
     .screen {
-      display: none;
+      display:none;
       height:100vh;
       width:100vw;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
       padding:20px;
+      position:relative;
     }
     h1, p {
       text-shadow: 2px 2px 6px #000;
       max-width: 90%;
     }
     .btn {
-      margin-top: 30px;
-      padding: 15px 25px;
-      background: rgba(0,0,0,0.7);
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 8px;
-      box-shadow: 2px 2px 8px #000;
-      cursor: pointer;
-      transition: 0.3s;
+      margin-top:30px;
+      padding:15px 25px;
+      background:rgba(0,0,0,0.7);
+      color:#fff;
+      text-decoration:none;
+      font-weight:bold;
+      border-radius:8px;
+      box-shadow:2px 2px 8px #000;
+      cursor:pointer;
+      transition:0.3s;
     }
-    .btn:hover {
-      background: rgba(255,255,255,0.9);
-      color: #000;
-    }
-    /* --- Halaman audio --- */
-    #screen2 {
-      justify-content: flex-start; /* biar header di atas */
-      position: relative;
+    .btn:hover {background:rgba(255,255,255,0.9);color:#000;}
+    /* layar 2 */
+    #screen2 h1 {
+      margin-top:40px;
     }
     .audio-box {
-      position: absolute;
-      bottom: 30px; /* jarak dari bawah */
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      max-width: 450px;
+      position:absolute;
+      bottom:20px;
+      left:50%;
+      transform:translateX(-50%);
+      width:90%;
+      max-width:450px;
     }
-    audio {width:100%;}
+    audio {
+      width:100%;
+    }
   </style>
 </head>
 <body>
@@ -73,11 +72,11 @@
     <button class="btn" onclick="goToAudio()">▶️ Masuk ke Narasi Utama</button>
   </div>
 
-  <!-- Slide 2 (Narasi) -->
+  <!-- Slide 2 -->
   <div class="screen" id="screen2">
     <h1>🎧 Dengarkan Narasi Utama</h1>
     <div class="audio-box">
-      <audio controls autoplay>
+      <audio id="player" controls>
         <source src="./pejuangtangguh2(2).mp3" type="audio/mpeg">
         Browser Anda tidak mendukung pemutar audio.
       </audio>
@@ -88,6 +87,8 @@
     function goToAudio(){
       document.getElementById("screen1").style.display="none";
       document.getElementById("screen2").style.display="flex";
+      // hanya play kalau user klik tombol
+      document.getElementById("player").play().catch(()=>{});
     }
   </script>
 </body>
